@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sets and Map</title>
+</head>
+<body>
+    <p>Set is a collection of unique values</p>
+    <script>
+        "use strict";
+        const weekdays =['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+        const openingHours= {
+                [weekdays[3]]:{
+                    open: 12,
+                    close: 22,
+                },
+                [weekdays[4]]: {
+                    open: 11, 
+                    close: 23,
+                },
+                [weekdays[5]]: {
+                    open: 10,
+                    close: 24,
+                },
+            };
+        
+        const restaurant = {
+            name: 'Classico Italiano',
+            location: 'Via Angelo Tavanti 23, Firenze, Italy',
+            categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'], 
+            starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'], 
+            mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+            
+            // ENHANCED ES6 OBJECT LITERAL
+            openingHours,
+
+            order(starterIndex, mainIndex){
+                return[this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+            },
+            orderDelivery ({
+                starterIndex=1, 
+                mainIndex =0,
+                time = '20:00', 
+                address,
+            }) {
+                console.log(
+                    `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} and will be delivered to ${address} and ${time}`
+                    );
+            },
+            
+            orderPasta(ing1, ing2, ing3){
+                console.log(`Here is your delicious pasta with ${ing1} and ${ing2} and ${ing3}`);
+            },
+
+            orderPizza(mainIngredient, ...otherIngredients){
+                console.log(mainIngredient);
+                console.log(otherIngredients);
+            },
+        };
+
+
+        ////////////////////////////// WORKING WITH STRINGS //////////////////////////////
+        const airline = 'TAP Air Portugal';
+        const plane = 'A320';
+
+        console.log(plane[0]);
+
+        console.log(airline.indexOf('r'));
+        console.log(airline.lastIndexOf('r'));
+        console.log(airline.indexOf('Portugal'));
+
+        console.log(airline.slice(4));
+        console.log(airline.slice(4, 7));
+
+        console.log(airline.slice(0, airline.indexOf(" ")));
+        console.log(airline.slice(airline.lastIndexOf(' ')+1));
+
+        console.log(airline.slice(-2));
+        console.log(airline.slice(1, -1));
+
+        const checkMiddleSeat = function(seat){
+            // B and E are middle seats
+            const s= seat.slice(-1);
+            if (s === 'B' || s === 'E'){
+                console.log('You got the middle seat');
+            }
+            else{
+                console.log('You got lucky ');
+            }
+        };
+        checkMiddleSeat('11B');
+        checkMiddleSeat('23C');
+        checkMiddleSeat('3E');
+
+        console.log(new String('jonas'));
+        console.log(typeof new String('jonas'));
+
+        console.log(new String('jonas').slice());
+        console.log(typeof new String('jonas').slice(1));
+
+
+
+        /////////////////////// SETS //////////////////////////////////
+
+        // const orderSet = new Set(['Pasta', 'Pizza', 'Pizza','Risotto', 'Pasta', 'Pizza']);
+        // console.log(orderSet);
+
+        // console.log(new Set('Jonas'));
+
+        // // SIZE OF SET
+        // console.log(orderSet.size);
+
+        // // CHECKS IF ELEMENT IS IN SET 
+        // console.log(orderSet.has('Pizza'));
+        // console.log(orderSet.has('Bread'));
+
+        // // ADDING NEW ELEMENTS TO SET 
+        // orderSet.add('Garlic Bread');
+
+        // // DELETING ELEMENTS FROM SET 
+        // orderSet.delete('Risotto');
+
+        // // TO RETRIEVE VALUES 
+        // // THERE IS NO POINT OF RETRIEVE ANYTHING FROM A SET BC THEIR INDEXES DONT MATTER (THAT IS WHY YOU CAN CHECK IF AN ELEMENT EXISTS OR NOT), IF YOU NEED TO RETRIEVE, USE AN ARRAY 
+
+        // // TO EMPTY THE SET 
+        // // orderSet.clear();
+
+        // for(const order of orderSet){
+        //     console.log(order);
+        // }
+
+        // // TO CREATE A UNIQUE ARRAY (ARRAY TO SET)
+        // const staff = ['Waiter ', 'Chef','Waiter', 'Manager', 'Chef', 'Waiter'];
+        // const staffUnique = [...new Set(staff)];
+        // console.log(staffUnique);
+
+        // console.log(new Set('asdfghjkertyuidfgh').size);
+
+
+
+
+
+        //////////////////////////// MAPS ///////////////////////
+        // const rest = new Map();
+
+        // // TO FILL IN MAP
+        // rest.set('name', 'Classico Italiano');
+        // rest.set(1, 'Firenze, Italy');
+        // console.log(rest.set(2, 'Lisbon, Portugal'));
+
+        // rest.set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+        // .set('open', 11)
+        // .set('close, 23')
+        // .set(true,'We are open')
+        // .set(false, 'we are closed');
+
+        // // TO READ DATA FROM A MAP 
+        // console.log(rest.get('name'));
+        // console.log(rest.get(true))
+
+        // // COOL TRICK
+        // const time = 21;
+        // console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+        // // TO CHECK IF MAP CONTAINS A CERTAIN KEY
+        // console.log(rest.has('categories'));
+
+        // // DELETE ELEMENTS FROM MAP
+        // // rest.delete(2);
+        // // console.log(rest);
+
+        // // SIZE PROPERTY
+        // console.log(rest.size);
+
+        // // TO WIPE OUT ALL ELEMENTS FROM MAP
+        // // rest.clear();
+
+        // // USING ARRAYS/OBJECTS AS MAP KEYS 
+        // rest.set([1,2], 'Test');
+        // console.log(rest);
+
+        // console.log(rest.get([1,2])); // undefined bc even though you type the array the same way, it isn't technically the same array, not the same object in heap. create an array and use it if you want to use it. 
+
+        // console.log(rest.set(document.querySelector('p', "Paragraph")))
+
+        // const question = new Map([
+        //     ['question','What is the best programming language in the world?'],
+        //     [1, 'C'],
+        //     [2, 'Java'],
+        //     [3, 'Javascript'],
+        //     ['correct', 3],
+        //     [true, 'Correct!'],
+        //     [false, 'Wrong answer!'],
+        // ]);
+        // console.log(question);
+
+        // // CONVERT OBJECTS TO MAP 
+        // console.log(Object.entries(openingHours));
+        // const hoursMap = new Map(Object.entries(openingHours));
+        // console.log(hoursMap);
+
+        // // QUIZ APP 
+        // console.log(question.get('question'));
+        // for (const [key, value] of question){
+        //     if(typeof key === 'number'){
+        //         console.log(`Answer ${key}: ${value}`);
+        //     }
+        // }
+
+        // const answer = Number(prompt(`Your answer`));
+        // console.log(answer);
+
+        // console.log(question.get(question.get('correct') === answer));
+
+        // // CONVERT MAP TO ARRAY 
+        // console.log([...question]);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting and TDZ</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        // var == undefined 
+        // let/const == tdz
+        // declaration == works with
+        // expression, arrow functions == tdz
+
+        // console.log(me); // undefined
+        // console.log(job); // can't access 'job'; TDZ
+        // console.log(year); // can't access 'job'; TDZ
+
+        // var me = 'Jonas';
+        // let job = 'teacher';
+        // const year = 1991;
+
+        // console.log(declar(2, 3)); //can be called before function
+        // console.log(addExpr(2, 3)); //TDZ
+        // console.log(addArrow(2, 3)); // TDZ
+        
+        // function declar(a,b) {
+        //     return a + b;
+        // };
+
+        // const addExpr = function(a,b){
+        //     return a + b;
+        // };
+
+        // const addArrow = (a,b) => a+b;
+
+        // Example 
+        if(!numProducts) deleteShoppingCart();
+
+        var numProducts = 10;
+
+        function deleteShoppingCart(){
+            console.log('All products deleted');
+        }
+    </script>
+</body>
+</html>

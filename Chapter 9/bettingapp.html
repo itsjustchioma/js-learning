@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Betting App</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        const game = {
+            team1: 'Bayern Munich',
+            team2: 'Borrussia Dortmund',
+            players: [
+                [
+                'Neuer',
+                'Pavard',
+                'Martinez',
+                'Alaba',
+                'Davies',
+                'Kimmich',
+                'Goretzka',
+                'Coman',
+                'Muller',
+                'Gnarby',
+                'Lewandowski',
+            ],
+            [
+                'Burki',
+                'Schulz',
+                'Hummels',
+                'Akanji',
+                'Hakimi',
+                'Weigl',
+                'Witsel',
+                'Hazard',
+                'Brandt',
+                'Sancho',
+                'Gotze',
+            ],
+        ],
+        score: '4:0',
+        scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+        date: "Nove 9th, 2037",
+        odds: {
+            team1: 1.33, 
+            x: 3.25,
+            team2: 6.5,
+        },
+        };
+
+        // 1. CREATE ONE PLAYER ARRAY FOR EACH TEAM 
+        const [players1, players2] = game.players;
+        console.log(players1, players2);
+
+        // 2. PRINT OUT THE GOALKEEPER'S NAME (FIRST NAME IN EACH ARRAY)
+        const [goalkeeper1,...otherPlayers] = players1; 
+        console.log(goalkeeper1);
+
+        const [goalkeeper2, ...otherPlayers2] = players2;
+        console.log(goalkeeper2);
+
+        // 3. ARRAY WITH ALL 22 PLAYERS
+        const allPlayers = [...players1, ...players2];
+        console.log(allPlayers);
+
+        // 4. ARRAY CONSTITUTING OF SUBSTITUTE PLAYERS
+        const newArray1 = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+        console.log(newArray1);
+
+        // 5. CREATE ONE VARIABLE FOR EACH ODD 
+        const {...odd1} = game.odds;
+        console.log(odd1);
+
+        // 6. FUNCTION THAT RECEIVES PLAYER NAMES AND GOALS SCORED (NO. OF PLAYERS ENETERED)
+        function printGoals(...players){
+            let sum =players.length;
+                console.log(`${players} scored a goal! Total goals scored: ${sum} `);
+            }
+            printGoals(...game.scored);
+            printGoals("Hey", "You", "Are", "Weird");
+
+        // 7. TEAM W THE LOWER ODDS SHOULD WIN, PRINT THE LOOSING TEAM W/O IF/ELSE, TERNARY.
+        game.team1 < game.team2 &&
+        console.log("team 1 wins"); 
+        game.team1 > game.team2 &&
+        console.log("team 2 wins"); 
+
+        // 1. LOOP OVER THE GAME.SCORED ARRAY AND PRINT EACH PLAYER NAME TO THE CONSOLE, ALONG WITH THE GOAL NUMBER 
+        const gsScored = [...game.scored.entries()];
+        for (const [i, goalies] of gsScored){
+                console.log(`Goal ${i+1}: ${goalies}`);
+            }
+        
+        // 2. USE LOOP TO CALC THE AVERAGE ODD 
+        const avgOdds = Object.values(game.odds);
+        let avg =0;
+        for (const odd of avgOdds){
+            avg += odd; 
+        }
+            avg /= avgOdds.length;
+               console.log(avg);
+
+        //3. PRINT 3 ODDS TO CONSOLE
+        for (const [team, odd] of Object.entries(game.odds)){
+            const teamString = team ==='x' ? 'draw' : `victory ${game[team]}`;
+            console.log(`odd of ${teamString} ${odd}`);
+        }
+
+        //4. CREATE OBJECT SCORERS WHICH CONTAINS THE NAMES OF THE PLAYERS WHO SCORED AS PROPERTIES, AND NO OF GOALS AS VALUES
+        const objScorers ={
+
+        }
+    </script>
+</body>
+</html>
